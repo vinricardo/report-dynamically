@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All clients</title>
+    <style>
+        * {
+            margin: 0;
+            font-family: Roboto, sans-serif;
+        }
+
+        @page {
+            size: A4 portrait;
+            margin: 54.1px 43.3px 42.36px 56.61px;
+        }
+
+        .header, .header-space {
+            height: 40px;
+        }
+
+        .footer, .footer-space {
+            height: 40px;
+        }
+
+        .header {
+            position: fixed;
+            font-weight: bold;
+            top: 0;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            display: flex;
+            font-weight: bold;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 100%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .border {
+            border: 1.5px solid black;
+            padding: .25rem;
+        }
+    </style>
+</head>
+<body>
+
+<table class="content">
+    <thead>
+    <tr>
+        <td>
+            <div class="header-space">&nbsp;</div>
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td colspan="2">
+            <p>Up-to-date list of customers registered in the virtual purchasing system. The listing contains basic
+                information about the users of the application, which is only necessary to make marketing decisions.</p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <p class="subtitle" style="padding: 1rem 0">Clients list</p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <table class="clients">
+                <thead>
+                <tr>
+                    <th class="border" th:each="value : ${values}" th:text="${value}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${clients.size() == 0}">
+                    <td colspan="5" style="text-align: center"> No client registered</td>
+                </tr>
+                <span th:each="client : ${clients}">
+                    <tr>
+                        <td class="border"
+                                th:each="field, index : ${client}"
+                        >
+                            <span th:text="${field}"></span>
+                        </td>
+                    </tr>
+                </span>
+
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td>
+            <div class="footer-space">
+                &nbsp;
+            </div>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+
+<div class="header">
+    <p class="title">Registered customers with some movement</p>
+</div>
+<div class="footer">
+    <p >Vinícius Ricardo da Silva</p>
+    <div style="display: inline-flex">
+        <p>&#169;&nbsp;</p>
+        <p th:text="${year}"></p>
+        <p>&nbsp;- Programador Fullstack</p>
+    </div>
+</div>
+
+</body>
+
+</html>
